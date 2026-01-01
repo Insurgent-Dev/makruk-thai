@@ -1,5 +1,7 @@
 # 🚀 Makruk Thai: Sassy AI Board Game Universe
 
+![Project Screenshot](./public/screenshot.png)
+
 Experience the traditional Thai Board Game (**Makruk**) like never before. Immerse yourself in a **Cyberpunk Glassmorphism** interface featuring hyper-intelligent, sassy AI personalities.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
