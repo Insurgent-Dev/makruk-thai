@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+@theme {
+  --color-stone-950: #0c0a09;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --neon-cyan: #22d3ee;
+  --neon-amber: #fbbf24;
+  --neon-purple: #c084fc;
+  --neon-red: #ef4444;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-stone-950);
+  color: white;
+  overflow-x: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .neon-border-cyan { border-color: rgba(34, 211, 238, 0.5); box-shadow: 0 0 15px rgba(34, 211, 238, 0.3); }
+  .neon-border-amber { border-color: rgba(251, 191, 36, 0.5); box-shadow: 0 0 15px rgba(251, 191, 36, 0.3); }
+  .neon-border-purple { border-color: rgba(192, 132, 252, 0.5); box-shadow: 0 0 15px rgba(192, 132, 252, 0.3); }
+  .neon-border-red { border-color: rgba(239, 68, 68, 0.5); box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
+
+  .scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+    pointer-events: none;
+    position: absolute;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    opacity: 0.1;
+    animation: scanline 6s linear infinite;
+  }
+
+  .grid-glow {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  }
+
+  .piece-glow {
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Perspective for the board */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.rotate-x-10 {
+  transform: rotateX(10deg);
+}
+
+.piece-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotateX(-10deg); }
+  50% { transform: translateY(-5px) rotateX(-10deg); }
 }
